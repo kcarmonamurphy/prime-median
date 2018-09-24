@@ -1,7 +1,7 @@
 {
-  "name": "touchbistro",
+  "name": "prime-median",
   "version": "1.0.0",
-  "description": "Take Home Assignment for TouchBistro",
+  "description": "Take Home Assignment for Interview",
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js",
