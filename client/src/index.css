@@ -1,0 +1,85 @@
+@import 'reset.css';
+
+body {
+  margin: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, span {
+  font-family: Helvetica;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+span {
+  font-size: 14px;
+}
+
+p {
+  font-size: 20px;
+}
+
+div.result {
+  padding: 15px;
+  border: 1px solid grey;
+  background: lightgreen;
+}
+
+div.error {
+  padding: 15px;
+  border: 1px solid grey;
+  background: pink;
+}
+
+form {
+  display: flex;
+  margin: 15px 0;
+}
+
+form input {
+  width: 100%;
+  font-size:23px;
+  border: 1px solid black;
+  border-right: 0;
+  padding:10px;
+}
+
+form button {
+  font-size:22px;
+  padding:10.5px;
+  border: 1px solid black;
+  color: black;
+  background-color:lightgreen;
+  cursor: pointer;
+}
+
+form button:disabled {
+  color: #ccc;
+  background-color:white;
+  cursor: default;
+}

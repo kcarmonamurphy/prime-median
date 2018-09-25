@@ -24,8 +24,21 @@ class App extends React.Component {
     event.preventDefault();
 
     this.callApi(this.state.value)
-      .then(res => this.setState({ response: res.result }))
-      .catch(err => this.setState({ error: err.error }));
+      .then(res => this.parseResponse(res))
+      .catch(err => alert(err));
+  }
+
+  parseResponse(response) {
+    //clear the state
+    this.setState({ value: '', response: '', error: ''});
+
+    if (response.hasOwnProperty('result')) {
+      this.setState({ response: response.result })
+    } else if (response.hasOwnProperty('error')) {
+      this.setState({ error: response.error })
+    } else {
+      throw "unkown error";
+    }
   }
 
   callApi = async (value) => {
@@ -42,27 +55,47 @@ class App extends React.Component {
       <main>
         {header}
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="enter a positive integer"/>
-          <Button text="Go"/>
+          <input type="number" value={this.state.value} onChange={this.handleChange} placeholder="enter a positive integer"/>
+          <Button value={this.state.value} />
         </form>
-        <div>Result: {this.state.response}</div>
-        <div>Error: {this.state.error}</div>
+        <Result response={this.state.response} />
+        <Error error={this.state.error} />
       </main>
     );
   }
 }
 
 function Button(props) {
-  return <button>{props.text}</button>
+  const value = props.value;
+  if (value) {
+    return <button>Calculate</button>
+  }
+  return <button disabled={true}>Calculate</button>
 }
 
-// class Button extends React.Component {
-//   render(props) {
-//     return (
-//       <button>{props.text}</button>
-//     );
-//   }
-// }
+function Result(props) {
+  const result = props.response;
+  if (result) {
+    return (
+      <div className="result">
+        <p>Result: {result}</p>
+      </div>
+    )
+  }
+  return null;
+}
+
+function Error(props) {
+  const error = props.error;
+  if (error) {
+    return (
+      <div className="error">
+        <p>Error: {error}</p>
+      </div>
+    )
+  }
+  return null;
+}
 
 const header = <h1>Median Prime(s) Finder</h1>;
 
