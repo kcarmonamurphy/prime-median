@@ -12,7 +12,7 @@ app.get('/api/:n', (req, res) => {
 	const n = parseInt(req.params.n);
 
   //larger values of n can cause heap overflow
-  if (n <= 2 || n > 10000) {
+  if (n <= 2 || n >= 10000) {
     return res.json({
       error: "Please supply a positive integer larger than 2 but less than 10000"
     });
@@ -20,7 +20,7 @@ app.get('/api/:n', (req, res) => {
 
 	let primes = sieve.findPrimes(n);
 	let median = sieve.findMedian(primes);
-  
+
 	res.json({
     result: `${median}`
   });
